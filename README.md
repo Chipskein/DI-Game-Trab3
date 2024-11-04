@@ -28,9 +28,3 @@ O jogo deve utilizar `localStorage` para armazenar e recuperar informações com
 1. Clone este repositório em sua máquina local.
 2. Abra o arquivo `index.html` em um navegador compatível.
 3. Jogue e divirta-se!
-
-## Link do Projeto
-[GitHub Repository](link-do-repositorio)
-
-## Contribuições
-Sinta-se à vontade para contribuir com sugestões ou melhorias!
