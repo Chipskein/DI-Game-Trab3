@@ -1,0 +1,67 @@
+body{
+    background-color: black;    
+    color: greenyellow;
+
+}
+#root{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 20px;
+    border: none;
+    margin: none;
+    padding: none;
+}
+#terebi{
+    
+    background-image: url('/assets/imgs/terebi.png');
+    background-position: center;
+    background-size: fill;
+    background-repeat: no-repeat;
+    background-color: rgba(27, 27, 27, 0.76);
+    width: 880px;
+    height: 600px;
+    border-radius: 20px;
+
+}
+#logo-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: white;
+}
+#logo-img{
+    width: 60px;
+}
+main{
+    display: flex;
+    justify-content: center;
+}
+footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#github-logo{
+    width: 50px;
+}
+#game-grid{
+    width: 600px;
+    height: 800px;
+    background-color: rgb(34, 34, 34);
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-self: center;
+}
+
+td {
+    position: relative;
+}
+.bar {
+    width: 80px;
+    height: 20px;
+    background-color: rgb(14, 141, 201);
+    position: absolute;
+}
