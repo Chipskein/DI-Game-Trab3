@@ -3,7 +3,7 @@ const gameGrid=document.getElementById('game-grid');
 const bar=document.getElementById('movable-bar')
 const ball = document.getElementById('ball');
 const bricksContainer = document.getElementById('bricks');
-const oldScoreDisplay=document.getElementById('old-score');
+const oldScoreDisplay=document.getElementById('last-score');
 const scoreDisplay = document.getElementById('score');
 const lifesDisplay = document.getElementById('life');
 const pressEnter = document.getElementById('press-start');
@@ -57,6 +57,13 @@ function moveBall() {
             pressEnter.style.color = "red";
             audioBGM.pause();
             pressEnter.innerText = "Game Over! Press R restart";
+            localStorage.setItem("last-played-data", 
+                JSON.stringify({
+                    score: score,
+                    lifes: lifes,
+                    time: new Date()
+                })
+            );
             return;
         }
         resetBall();
@@ -86,6 +93,11 @@ function moveBall() {
             ballRect.top  >= brickRect.top &&
             ballRect.top <= brickRect.top + bar.offsetHeight
         ) {
+            if (velocityY > 0) {
+                velocityY+=0.5;
+            } else {
+                velocityY-=0.5;
+            }
             velocityY *= -1;
             brick.remove();
             bricks.splice(i, 1);
