@@ -15,8 +15,28 @@
             </div>
         </header>
         <main>
-            <!--<div id="terebi"></div>-->
+              <!-- Audio element for background music -->
+            <audio id="background-audio" loop>
+                <source src="/assets/audios/Nier-CityRuins-8bit.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
+            <div id="info">
+                <h2 class="score-field">Score : <span id="score">0</span></h2>
+                <h2 class="score-field">Lifes : <span id="life">3</span></h2>
+            </div>
+            <div id="press-start">Press Enter to start the game</div>
+            <div>Press 'R' to restart</div>
             <table id="game-grid">
+                <tr>
+                    <td>
+                        <div class="bricks" id="bricks"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="ball" id="ball"></div>
+                    </td>
+                </tr>
                 <tr>
                     <td>
                         <div class="bar" id="movable-bar"></div>

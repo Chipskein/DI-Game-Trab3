@@ -37,6 +37,8 @@ body{
 main{
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 footer{
     display: flex;
@@ -48,8 +50,8 @@ footer{
     width: 50px;
 }
 #game-grid{
-    width: 600px;
-    height: 800px;
+    width: 400px;
+    height: 700px;
     background-color: rgb(34, 34, 34);
     color: rgb(255, 255, 255);
     justify-content: center;
@@ -62,6 +64,58 @@ td {
 .bar {
     width: 80px;
     height: 20px;
-    background-color: rgb(14, 141, 201);
+    background-color: rgb(255, 255, 255);
     position: absolute;
+    left: 0;
+}
+#ball {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+#bricks {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    height: 200px;
+}
+
+.brick {
+    width: 50px;
+    height: 20px;
+    margin-bottom: 1px;
+}
+#info{
+    display: flex; 
+    justify-content: space-between;
+    width: 400px;
+}
+
+#press-start {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.548);
+    width: 500px;
+    height: 750px;
+    font-size: xx-large;
+    text-align: center;
+    animation: shineEffect 1.5s infinite alternate;
+    z-index: 9999;
+}
+
+@keyframes shineEffect {
+    0% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5), 0 0 20px rgb(255, 204, 0), 0 0 30px rgb(255, 204, 0), 0 0 40px rgb(255, 204, 0);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1), 0 0 40px rgb(255, 204, 0), 0 0 50px rgb(255, 204, 0), 0 0 60px rgb(255, 204, 0);
+    }
 }
