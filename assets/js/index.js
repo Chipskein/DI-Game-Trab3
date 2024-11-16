@@ -13,6 +13,7 @@ const audioFXBrick = new Audio('assets/audios/8-bit-explosion.mp3');
 audioFXBrick.volume = 0.2;
 const audioFXBar = new Audio('assets/audios/barHit.mp3');
 audioFXBar.volume = 0.2;
+let game=false;
 let lifes=3;
 let lastTime=0;
 let score = 0;
@@ -23,7 +24,7 @@ let velocityY = 2;
 var bricks = [];
 let barSpeed = 20;
 const brickRows = 4;
-const brickColumns = 7;
+const brickColumns = 6;
 const brickWidth = 50;
 const brickHeight = 20;
 const brickPadding = 8;
@@ -45,6 +46,9 @@ function createBricks() {
     }
 }
 function moveBall() {
+    if (!game) {
+        return;
+    }
     ballX += velocityX;
     ballY += velocityY;
     if (ballX <= 0 || ballX + ball.offsetWidth >= gameGrid.offsetWidth) {
@@ -65,6 +69,7 @@ function moveBall() {
                     time: new Date()
                 })
             );
+            game=false;
             return;
         }
         resetBall();
@@ -98,6 +103,7 @@ function moveBall() {
             ballRect.top  >= brickRect.top &&
             ballRect.top <= brickRect.top + brick.offsetHeight
         ) {
+            
             barSpeed+=0.5;
             if (velocityY > 0) {
                 velocityY+=0.02;
@@ -126,6 +132,7 @@ function moveBall() {
                 time: new Date()
             })
         );
+        game=false;
         return
     }
     
@@ -141,6 +148,74 @@ function resetBall() {
     velocityX = 2;
     velocityY = 2;
 }
+
+function addMobileControls() {
+    const d=document.getElementById('mobile-controls');
+    const leftButton = document.getElementById('left-button');
+    const rightButton = document.getElementById('right-button');
+    const restartButton = document.getElementById('restart-button');
+    const startButton = document.getElementById('start-button');
+    d.style.display = "flex";
+    leftButton.addEventListener('touchend', (e) => {
+        console.log("left")
+        if(game) moveBar(-barSpeed);
+        e.preventDefault();
+    });
+
+    rightButton.addEventListener('touchend', (e) => {
+        console.log("right")
+        if(game) moveBar(barSpeed);
+        e.preventDefault();
+    });
+
+    startButton.addEventListener('touchend', function (e) {
+        game=true;
+        pressEnter.style.display = "none";
+        audioBGM.play();
+        moveBall();
+        e.preventDefault();
+    });
+
+    restartButton.addEventListener('touchend', (e) => {
+        location.reload();
+        e.preventDefault();
+    });
+
+}
+
+function addDesktopControls() {
+    window.addEventListener("keypress", (e) => {
+        switch (e.key.toUpperCase()) {
+            case "A":
+                moveBar(-barSpeed);
+                break;
+            case "D":
+                moveBar(barSpeed);
+                break;
+            case "ENTER":
+                game=true;
+                pressEnter.style.display = "none";
+                audioBGM.play();
+                moveBall();
+                break;
+            case "R":
+                location.reload();
+                break;
+        }
+    });
+}
+
+function moveBar(delta) {
+    const containerWidth = bar.parentElement.offsetWidth;
+    const barWidth = bar.offsetWidth;
+    const maxRight = containerWidth - barWidth;
+    let currentPosition = parseInt(getComputedStyle(bar).left, 10);
+    const newPos = currentPosition + delta;
+    if (newPos >= 0 && newPos <= maxRight) {
+        bar.style.left = `${newPos}px`;
+    }
+}
+
 const last_data=localStorage.getItem("last-played-data");
 if (last_data) {
     const data = JSON.parse(last_data);
@@ -148,37 +223,13 @@ if (last_data) {
     oldScoreDisplay.innerText = data.score;
 }
 createBricks();
-window.addEventListener("keypress",(e)=>{
-    const containerWidth = bar.parentElement.offsetWidth;
-    const barWidth = bar.offsetWidth;
-    const maxRight = containerWidth - barWidth;
-    let old = getComputedStyle(bar).left || "0px";
-    let currentPosition = parseInt(old, 10);
-    switch (e.key.toUpperCase()){
-        case "A":
-            var newPos = currentPosition - barSpeed;
-            if (newPos >= 0) {
-                bar.style.left = `${newPos}px`;
-            }
-            break
-        case "D":
-            var newPos = currentPosition + barSpeed;
-            if (newPos <= maxRight) {
-                bar.style.left = `${newPos}px`;
-            }
-            break
-        case "ENTER":
-            pressEnter.style.display = "none";
-            audioBGM.play();
-            moveBall();
-            break
-        case "R":
-            location.reload();
-            break
-        default:
-            e.preventDefault();
-    }
-})
+const isMobile =/Mobi|Android/i.test(navigator.userAgent);
+if (isMobile) {
+    pressEnter.innerText = "Press S button to start";
+    addMobileControls();
+} else {
+    addDesktopControls();
+}
 
 
 
