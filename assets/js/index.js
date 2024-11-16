@@ -21,6 +21,7 @@ let ballY = 50;
 let velocityX = 2;
 let velocityY = 2;
 var bricks = [];
+let barSpeed = 20;
 const brickRows = 4;
 const brickColumns = 7;
 const brickWidth = 50;
@@ -88,11 +89,12 @@ function moveBall() {
         ballRect = ball.getBoundingClientRect();
         var brickRect=brick.getBoundingClientRect();
         if (
-            ballRect.left > brickRect.left &&
-            ballRect.left < brickRect.left + bar.offsetWidth &&
+            ballRect.right > brickRect.left &&
+            ballRect.left < brickRect.left + brick.offsetWidth &&
             ballRect.top  >= brickRect.top &&
-            ballRect.top <= brickRect.top + bar.offsetHeight
+            ballRect.top <= brickRect.top + brick.offsetHeight
         ) {
+            barSpeed+=2;
             if (velocityY > 0) {
                 velocityY+=0.5;
             } else {
@@ -148,16 +150,15 @@ window.addEventListener("keypress",(e)=>{
     const maxRight = containerWidth - barWidth;
     let old = getComputedStyle(bar).left || "0px";
     let currentPosition = parseInt(old, 10);
-    const moveSpeed = 25;
     switch (e.key.toUpperCase()){
         case "A":
-            var newPos = currentPosition - moveSpeed;
+            var newPos = currentPosition - barSpeed;
             if (newPos >= 0) {
                 bar.style.left = `${newPos}px`;
             }
             break
         case "D":
-            var newPos = currentPosition + moveSpeed;
+            var newPos = currentPosition + barSpeed;
             if (newPos <= maxRight) {
                 bar.style.left = `${newPos}px`;
             }
