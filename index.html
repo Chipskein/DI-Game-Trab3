@@ -9,20 +9,15 @@
 </head>
 <body>
     <div id="root">
-        <header>
-            <div id="logo-div">
-                <img id="logo-img" src="/assets/imgs/icon.png" alt="logo">
-            </div>
-        </header>
         <main>
-              <!-- Audio element for background music -->
-            <audio id="background-audio" loop>
-                <source src="/assets/audios/Nier-CityRuins-8bit.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-            <div id="info">
-                <h2 class="score-field">Score : <span id="score">0</span></h2>
-                <h2 class="score-field">Lifes : <span id="life">3</span></h2>
+            <div class="info-div">
+                <div class="old-info">
+                    <h2 class="old-score-field">Last Score : <span id="last-score">0</span></h2>
+                </div>
+                <div class="info">
+                    <h2 class="score-field">Score : <span id="score">0</span></h2>
+                    <h2 class="score-field">Lifes : <span id="life">3</span></h2>
+                </div>
             </div>
             <div id="press-start">Press Enter to start the game</div>
             <div>Press 'R' to restart</div>
@@ -43,6 +38,10 @@
                     </td>
                 </tr>
             </table>
+            <audio id="background-audio" loop>
+                <source src="/assets/audios/Nier-CityRuins-8bit.mp3" type="audio/mp3">
+                Your browser does not support the audio element.
+            </audio>
         </main>
         <footer>
             <a href="https://github.com/Chipskein/DI-Game-Trab3" target="_blank">

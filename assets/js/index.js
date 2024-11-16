@@ -3,6 +3,7 @@ const gameGrid=document.getElementById('game-grid');
 const bar=document.getElementById('movable-bar')
 const ball = document.getElementById('ball');
 const bricksContainer = document.getElementById('bricks');
+const oldScoreDisplay=document.getElementById('old-score');
 const scoreDisplay = document.getElementById('score');
 const lifesDisplay = document.getElementById('life');
 const pressEnter = document.getElementById('press-start');
@@ -100,6 +101,13 @@ function moveBall() {
         pressEnter.style.color = "greenyellow";
         audioBGM.pause();
         pressEnter.innerText = "You Win! Press R restart";
+        localStorage.setItem("last-played-data", 
+            JSON.stringify({
+                score: score,
+                lifes: lifes,
+                time: new Date()
+            })
+        );
         return
     }
     
@@ -109,12 +117,17 @@ function moveBall() {
     requestAnimationFrame(moveBall)
 }
 
-
 function resetBall() {
     ballX = 50;
     ballY = 50;
     velocityX = 2;
     velocityY = 2;
+}
+const last_data=localStorage.getItem("last-played-data");
+if (last_data) {
+    const data = JSON.parse(last_data);
+    score = data.score;
+    oldScoreDisplay.innerText = data.score;
 }
 createBricks();
 window.addEventListener("keypress",(e)=>{

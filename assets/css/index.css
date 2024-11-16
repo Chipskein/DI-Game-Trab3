@@ -1,7 +1,6 @@
 body{
     background-color: black;    
     color: greenyellow;
-
 }
 #root{
     display: flex;
@@ -11,28 +10,6 @@ body{
     border: none;
     margin: none;
     padding: none;
-}
-#terebi{
-    
-    background-image: url('/assets/imgs/terebi.png');
-    background-position: center;
-    background-size: fill;
-    background-repeat: no-repeat;
-    background-color: rgba(27, 27, 27, 0.76);
-    width: 880px;
-    height: 600px;
-    border-radius: 20px;
-
-}
-#logo-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    background-color: white;
-}
-#logo-img{
-    width: 60px;
 }
 main{
     display: flex;
@@ -89,9 +66,21 @@ td {
     height: 20px;
     margin-bottom: 1px;
 }
-#info{
+.info{
     display: flex; 
     justify-content: space-between;
+    width: 400px;
+}
+.old-info{
+    display: flex; 
+    justify-content: center;
+    width: 400px;
+}
+.info-div{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 400px;
 }
 
@@ -104,7 +93,7 @@ td {
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0.548);
     width: 500px;
-    height: 750px;
+    height: 850px;
     font-size: xx-large;
     text-align: center;
     animation: shineEffect 1.5s infinite alternate;
