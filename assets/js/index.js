@@ -9,9 +9,9 @@ const lifesDisplay = document.getElementById('life');
 const pressEnter = document.getElementById('press-start');
 const audioBGM = document.getElementById('background-audio');
 audioBGM.volume = 0.1;
-const audioFXBrick = new Audio('/assets/audios/8-bit-explosion.mp3');
+const audioFXBrick = new Audio('assets/audios/8-bit-explosion.mp3');
 audioFXBrick.volume = 0.2;
-const audioFXBar = new Audio('/assets/audios/barHit.mp3');
+const audioFXBar = new Audio('assets/audios/barHit.mp3');
 audioFXBar.volume = 0.2;
 let lifes=3;
 let lastTime=0;
@@ -80,12 +80,11 @@ function moveBall() {
         ballRect.left <= barRect.right &&         
         ballRect.right >= barRect.left
     ) {
-        velocityY = -Math.abs(velocityY); // Reverse upwards
-        //ballY = barRect.top - ball.offsetHeight; // Reset position
+        velocityY = -Math.abs(velocityY);
         const paddleCenter = barRect.left + barRect.width / 2;
         const ballCenter = ballRect.left + ballRect.width / 2;
         const offset = (ballCenter - paddleCenter) / (barRect.width / 2);
-        velocityX += offset * 2; // Adjust horizontal velocity
+        velocityX += offset * 2;
         audioFXBar.play();
     }
     
