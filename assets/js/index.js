@@ -80,7 +80,12 @@ function moveBall() {
         ballRect.left <= barRect.right &&         
         ballRect.right >= barRect.left
     ) {
-        velocityY *= -1;
+        velocityY = -Math.abs(velocityY); // Reverse upwards
+        //ballY = barRect.top - ball.offsetHeight; // Reset position
+        const paddleCenter = barRect.left + barRect.width / 2;
+        const ballCenter = ballRect.left + ballRect.width / 2;
+        const offset = (ballCenter - paddleCenter) / (barRect.width / 2);
+        velocityX += offset * 2; // Adjust horizontal velocity
         audioFXBar.play();
     }
     
@@ -94,11 +99,11 @@ function moveBall() {
             ballRect.top  >= brickRect.top &&
             ballRect.top <= brickRect.top + brick.offsetHeight
         ) {
-            barSpeed+=2;
+            barSpeed+=0.5;
             if (velocityY > 0) {
-                velocityY+=0.5;
+                velocityY+=0.02;
             } else {
-                velocityY-=0.5;
+                velocityY-=0.02;
             }
             velocityY *= -1;
             brick.remove();
