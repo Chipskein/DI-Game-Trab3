@@ -51,8 +51,11 @@ function moveBall() {
     if (ballY + ball.offsetHeight >= gameGrid.offsetHeight-200) {
         lifes--;
         lifesDisplay.innerText = lifes;
-        if (lifes === 0) {
-            alert("Game Over");
+        if (lifes <= 0) {
+            pressEnter.style.display = "flex";
+            pressEnter.style.color = "red";
+            audioBGM.pause();
+            pressEnter.innerText = "Game Over! Press R restart";
             return;
         }
         resetBall();
@@ -93,7 +96,10 @@ function moveBall() {
     }
     
     if (bricks.length === 0) {
-        alert("You Win!");
+        pressEnter.style.display = "flex";
+        pressEnter.style.color = "greenyellow";
+        audioBGM.pause();
+        pressEnter.innerText = "You Win! Press R restart";
         return
     }
     
