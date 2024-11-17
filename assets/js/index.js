@@ -157,13 +157,11 @@ function addMobileControls() {
     const startButton = document.getElementById('start-button');
     d.style.display = "flex";
     leftButton.addEventListener('touchend', (e) => {
-        console.log("left")
         if(game) moveBar(-barSpeed);
         e.preventDefault();
     });
 
     rightButton.addEventListener('touchend', (e) => {
-        console.log("right")
         if(game) moveBar(barSpeed);
         e.preventDefault();
     });
@@ -219,7 +217,6 @@ function moveBar(delta) {
 const last_data=localStorage.getItem("last-played-data");
 if (last_data) {
     const data = JSON.parse(last_data);
-    score = data.score;
     oldScoreDisplay.innerText = data.score;
 }
 createBricks();
